@@ -2,11 +2,14 @@
 
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
-import App from "../src/App";
+import { createMemoryRouter } from "react-router";
+import routes from "../src/routes";
+import { RouterProvider } from "react-router/dom";
 
 describe("App component", () => {
-  it("renders correct heading", () => {
-    render(<App />);
+  it("renders App on /", () => {
+    const router = createMemoryRouter(routes);
+    render(<RouterProvider router={router} />);
     expect(screen.getByRole("paragraph").textContent).toMatch(/Hello world/i);
   });
 });
