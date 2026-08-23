@@ -6,10 +6,10 @@ import { createMemoryRouter } from "react-router";
 import routes from "../src/routes";
 import { RouterProvider } from "react-router/dom";
 
-describe("App component", () => {
-  it("renders App on /", () => {
-    const router = createMemoryRouter(routes);
+describe("Cart component", () => {
+  it("renders Cart on /cart", () => {
+    const router = createMemoryRouter(routes, { initialEntries: ["/cart"] });
     render(<RouterProvider router={router} />);
-    expect(screen.getByRole("paragraph").textContent).toMatch(/Homepage/i);
+    expect(screen.getByRole("paragraph").textContent).toMatch(/Cart/i);
   });
 });

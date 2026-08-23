@@ -6,10 +6,10 @@ import { createMemoryRouter } from "react-router";
 import routes from "../src/routes";
 import { RouterProvider } from "react-router/dom";
 
-describe("App component", () => {
-  it("renders App on /", () => {
-    const router = createMemoryRouter(routes);
+describe("Shop component", () => {
+  it("renders Shop on /shop", () => {
+    const router = createMemoryRouter(routes, { initialEntries: ["/shop"] });
     render(<RouterProvider router={router} />);
-    expect(screen.getByRole("paragraph").textContent).toMatch(/Homepage/i);
+    expect(screen.getByRole("paragraph").textContent).toMatch(/Shop/i);
   });
 });
