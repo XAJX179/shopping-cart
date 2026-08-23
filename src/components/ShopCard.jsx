@@ -1,14 +1,20 @@
-function ShopCard() {
+function ShopCard({ uid, title, price, count, onChange }) {
   return (
-    <div className="card">
+    <div className="card" data-id={uid}>
       <img alt="" />
-      <p>name: bag</p>
-      <p>price: 10$</p>
-      <label htmlFor="item1count"></label>
+      <p>name: {title}</p>
+      <p>price: {price}$</p>
+      <label htmlFor={"itemCount" + uid}></label>
       <div className="count">
-        <button>-</button>
-        <input type="text" name="numOfItems1" id="item1count" />
-        <button>+</button>
+        <button className="decrement">-</button>
+        <input
+          type="text"
+          name={"itemCount" + uid}
+          id={"itemCount" + uid}
+          value={count}
+          onChange={(e) => onChange(e)}
+        />
+        <button className="increment">+</button>
       </div>
       <button>Add to cart</button>
     </div>
