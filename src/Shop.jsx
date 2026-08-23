@@ -1,5 +1,10 @@
 function Shop() {
-  return <p>Shop</p>;
+  return (
+    <header>
+      <h1>Shop</h1>
+      <p>Shop page</p>
+    </header>
+  );
 }
 
 export default Shop;

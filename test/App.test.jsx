@@ -10,6 +10,6 @@ describe("App component", () => {
   it("renders App on /", () => {
     const router = createMemoryRouter(routes);
     render(<RouterProvider router={router} />);
-    expect(screen.getByRole("paragraph").textContent).toMatch(/Homepage/i);
+    expect(screen.getByRole("heading", { name: /Homepage/i }));
   });
 });

@@ -10,6 +10,6 @@ describe("Cart component", () => {
   it("renders Cart on /cart", () => {
     const router = createMemoryRouter(routes, { initialEntries: ["/cart"] });
     render(<RouterProvider router={router} />);
-    expect(screen.getByRole("paragraph").textContent).toMatch(/Cart/i);
+    expect(screen.getByRole("heading", { name: /Cart/i }));
   });
 });

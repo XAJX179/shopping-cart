@@ -10,6 +10,6 @@ describe("Shop component", () => {
   it("renders Shop on /shop", () => {
     const router = createMemoryRouter(routes, { initialEntries: ["/shop"] });
     render(<RouterProvider router={router} />);
-    expect(screen.getByRole("paragraph").textContent).toMatch(/Shop/i);
+    expect(screen.getByRole("heading", { name: /Shop/i }));
   });
 });
