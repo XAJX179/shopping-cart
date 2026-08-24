@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useLocation } from "react-router";
 
 function App() {
-  const [cart, setCart] = useState([
+  const [shop, setShop] = useState([
     {
       uid: 10,
       title: "example card",
@@ -21,11 +21,15 @@ function App() {
       url: "../public/favicon.svg",
     },
   ]);
+  const [cart, setCart] = useState([]);
   let cartItemsCount = 0;
   let outlet;
-  if (useLocation().pathname == "/home") {
+  let path = useLocation().pathname;
+  if (path == "/home") {
     outlet = <Outlet />;
-  } else {
+  } else if (path == "/shop") {
+    outlet = <Outlet context={[shop, setShop, cart, setCart]} />;
+  } else if (path == "/cart") {
     outlet = <Outlet context={[cart, setCart]} />;
   }
   return (

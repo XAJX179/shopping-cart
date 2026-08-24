@@ -1,9 +1,9 @@
 function ShopCard({ uid, title, price, count, onChange, isErrored }) {
   let error = null;
-  let addCartBtn = <button>Add to cart</button>;
   if (isErrored || count == 0) {
     error = <p>Error: can only enter a number between 1 and 10.</p>;
   }
+  let addCartBtn = <button>Add to cart</button>;
   if (count == 0) {
     addCartBtn = <button disabled>Add to cart</button>;
   }

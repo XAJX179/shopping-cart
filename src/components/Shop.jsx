@@ -3,7 +3,7 @@ import ShopCard from "./ShopCard";
 import { useState } from "react";
 
 function Shop() {
-  const [cart, setCart] = useOutletContext();
+  const [shop, setShop, cart, setCart] = useOutletContext();
   const [errorsId, setErrorsId] = useState([]);
   return (
     <>
@@ -11,7 +11,7 @@ function Shop() {
         <h1>Shop</h1>
         <p>Shop page</p>
       </header>
-      {cart.map((e) => {
+      {shop.map((e) => {
         return (
           <ShopCard
             key={e.uid}
@@ -35,11 +35,11 @@ function Shop() {
         setErrorsId([...errorsId, uid]);
       }
     } else {
-      const index = cart.findIndex((e) => {
+      const index = shop.findIndex((e) => {
         return e.uid == uid;
       });
 
-      const cartCopy = [...cart];
+      const shopCopy = [...shop];
 
       let count;
       if (value == "") {
@@ -54,9 +54,9 @@ function Shop() {
         copyErrorsId.splice(errorIndex, 1);
         setErrorsId(copyErrorsId);
       }
-      cartCopy[index].numOfItems = count;
+      shopCopy[index].numOfItems = count;
 
-      setCart(cartCopy);
+      setShop(shopCopy);
     }
   }
 
