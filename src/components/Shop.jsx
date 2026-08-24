@@ -20,12 +20,46 @@ function Shop() {
             price={e.price}
             count={e.numOfItems}
             onChange={handleNumChange}
+            handleIncrement={handleIncrement}
+            handleDecrement={handleDecrement}
             isErrored={errorsId.includes(String(e.uid))}
           />
         );
       })}
     </>
   );
+
+  function handleIncrement(e) {
+    const uid = e.target.parentElement.parentElement.dataset.id;
+    const index = shop.findIndex((e) => {
+      return e.uid == uid;
+    });
+    let item = shop[index];
+    let numOfItems = item.numOfItems;
+
+    numOfItems++;
+    const shopCopy = [...shop];
+    if (validCount(numOfItems)) {
+      shopCopy[index].numOfItems = numOfItems;
+      setShop(shopCopy);
+    }
+  }
+  function handleDecrement(e) {
+    const uid = e.target.parentElement.parentElement.dataset.id;
+    const index = shop.findIndex((e) => {
+      return e.uid == uid;
+    });
+    let item = shop[index];
+    let numOfItems = item.numOfItems;
+
+    numOfItems--;
+    const shopCopy = [...shop];
+    if (validCount(numOfItems)) {
+      shopCopy[index].numOfItems = numOfItems;
+      setShop(shopCopy);
+    }
+  }
+
   function handleNumChange(e) {
     const uid = e.target.parentElement.parentElement.dataset.id;
     const value = e.target.value;
