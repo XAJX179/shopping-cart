@@ -48,6 +48,8 @@ function Shop() {
     if (cartIndex >= 0) {
       cartCopy.splice(cartIndex, 1);
       setCart([...cartCopy, itemCopy]);
+    } else {
+      setCart([...cartCopy, itemCopy]);
     }
     console.log(cart);
   }

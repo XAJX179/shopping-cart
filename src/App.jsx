@@ -9,35 +9,20 @@ function App() {
     {
       uid: 10,
       title: "example card",
-      price: "10",
-      numOfItems: "1",
+      price: 10,
+      numOfItems: 1,
       url: "../public/favicon.svg",
     },
     {
       uid: 11,
       title: "example card 2",
-      price: "15",
-      numOfItems: "2",
+      price: 15,
+      numOfItems: 2,
       url: "../public/favicon.svg",
     },
   ]);
-  const [cart, setCart] = useState([
-    {
-      uid: 10,
-      title: "example card",
-      price: "10",
-      numOfItems: "1",
-      url: "../public/favicon.svg",
-    },
-    {
-      uid: 11,
-      title: "example card 2",
-      price: "15",
-      numOfItems: "1",
-      url: "../public/favicon.svg",
-    },
-  ]);
-  let cartItemsCount = 0;
+  const [cart, setCart] = useState([]);
+  let cartItemsCount = cart.length;
   let outlet;
   let path = useLocation().pathname;
   if (path == "/home" || path == "/") {
