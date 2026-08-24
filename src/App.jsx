@@ -40,7 +40,7 @@ function App() {
   let cartItemsCount = 0;
   let outlet;
   let path = useLocation().pathname;
-  if (path == "/home") {
+  if (path == "/home" || path == "/") {
     outlet = <Outlet />;
   } else if (path == "/shop") {
     outlet = <Outlet context={[shop, setShop, cart, setCart]} />;
