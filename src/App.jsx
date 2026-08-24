@@ -21,7 +21,22 @@ function App() {
       url: "../public/favicon.svg",
     },
   ]);
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState([
+    {
+      uid: 10,
+      title: "example card",
+      price: "10",
+      numOfItems: "1",
+      url: "../public/favicon.svg",
+    },
+    {
+      uid: 11,
+      title: "example card 2",
+      price: "15",
+      numOfItems: "1",
+      url: "../public/favicon.svg",
+    },
+  ]);
   let cartItemsCount = 0;
   let outlet;
   let path = useLocation().pathname;

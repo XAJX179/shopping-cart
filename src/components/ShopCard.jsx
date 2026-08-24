@@ -7,12 +7,13 @@ function ShopCard({
   handleIncrement,
   handleDecrement,
   isErrored,
+  onAddCart,
 }) {
   let error = null;
   if (isErrored || count == 0) {
     error = <p>Error: can only enter a number between 1 and 10.</p>;
   }
-  let addCartBtn = <button>Add to cart</button>;
+  let addCartBtn = <button onClick={(e) => onAddCart(e)}>Add to cart</button>;
   if (count == 0) {
     addCartBtn = <button disabled>Add to cart</button>;
   }
@@ -25,11 +26,7 @@ function ShopCard({
     );
   } else {
     decrementBtn = (
-      <button
-        disabled
-        className="decrement"
-        onClick={(e) => handleDecrement(e)}
-      >
+      <button disabled className="decrement">
         -
       </button>
     );
@@ -43,11 +40,7 @@ function ShopCard({
     );
   } else {
     incrementBtn = (
-      <button
-        disabled
-        className="increment"
-        onClick={(e) => handleIncrement(e)}
-      >
+      <button disabled className="increment">
         +
       </button>
     );

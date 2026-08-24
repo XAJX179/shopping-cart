@@ -23,11 +23,34 @@ function Shop() {
             handleIncrement={handleIncrement}
             handleDecrement={handleDecrement}
             isErrored={errorsId.includes(String(e.uid))}
+            onAddCart={onAddCart}
           />
         );
       })}
     </>
   );
+
+  function onAddCart(e) {
+    const uid = e.target.parentElement.dataset.id;
+    const shopIndex = shop.findIndex((e) => {
+      return e.uid == uid;
+    });
+    let item = shop[shopIndex];
+    let itemCopy = { ...item };
+
+    const cartIndex = cart.findIndex((e) => {
+      return e.uid == uid;
+    });
+    console.log(cartIndex);
+    let cartCopy = [...cart];
+    console.log(cartCopy);
+    console.log(itemCopy);
+    if (cartIndex >= 0) {
+      cartCopy.splice(cartIndex, 1);
+      setCart([...cartCopy, itemCopy]);
+    }
+    console.log(cart);
+  }
 
   function handleIncrement(e) {
     const uid = e.target.parentElement.parentElement.dataset.id;
