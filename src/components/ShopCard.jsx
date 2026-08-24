@@ -1,4 +1,12 @@
-function ShopCard({ uid, title, price, count, onChange }) {
+function ShopCard({ uid, title, price, count, onChange, isErrored }) {
+  let error = null;
+  let addCartBtn = <button>Add to cart</button>;
+  if (isErrored || count == 0) {
+    error = <p>Error: can only enter a number between 1 and 10.</p>;
+  }
+  if (count == 0) {
+    addCartBtn = <button disabled>Add to cart</button>;
+  }
   return (
     <div className="card" data-id={uid}>
       <img alt="" />
@@ -6,6 +14,7 @@ function ShopCard({ uid, title, price, count, onChange }) {
       <p>price: {price}$</p>
       <label htmlFor={"itemCount" + uid}></label>
       <div className="count">
+        {error}
         <button className="decrement">-</button>
         <input
           type="text"
@@ -15,8 +24,8 @@ function ShopCard({ uid, title, price, count, onChange }) {
           onChange={(e) => onChange(e)}
         />
         <button className="increment">+</button>
+        {addCartBtn}
       </div>
-      <button>Add to cart</button>
     </div>
   );
 }
