@@ -11,22 +11,24 @@ function Shop() {
         <h1>Shop</h1>
         <p>Shop page</p>
       </header>
-      {shop.map((e) => {
-        return (
-          <ShopCard
-            key={e.uid}
-            uid={e.uid}
-            title={e.title}
-            price={e.price}
-            count={e.numOfItems}
-            onChange={handleNumChange}
-            handleIncrement={handleIncrement}
-            handleDecrement={handleDecrement}
-            isErrored={errorsId.includes(String(e.uid))}
-            onAddCart={onAddCart}
-          />
-        );
-      })}
+      <div className="shop-items">
+        {shop.map((e) => {
+          return (
+            <ShopCard
+              key={e.uid}
+              uid={e.uid}
+              title={e.title}
+              price={e.price}
+              count={e.numOfItems}
+              onChange={handleNumChange}
+              handleIncrement={handleIncrement}
+              handleDecrement={handleDecrement}
+              isErrored={errorsId.includes(String(e.uid))}
+              onAddCart={onAddCart}
+            />
+          );
+        })}
+      </div>
     </>
   );
 

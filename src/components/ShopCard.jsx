@@ -6,8 +6,10 @@ function ShopCard({
   onChange,
   handleIncrement,
   handleDecrement,
+  handleDelete,
   isErrored,
   onAddCart,
+  cartPage,
 }) {
   let error = null;
   if (isErrored || count == 0) {
@@ -63,7 +65,13 @@ function ShopCard({
         />
         {incrementBtn}
       </div>
-      {addCartBtn}
+      {cartPage ? (
+        <button className="delete" onClick={(e) => handleDelete(e)}>
+          Remove
+        </button>
+      ) : (
+        addCartBtn
+      )}
     </div>
   );
 }
