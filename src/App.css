@@ -187,6 +187,8 @@
 .shop-items {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  margin: 0;
+  padding: 0;
 }
 img {
   height: 100px;
@@ -209,6 +211,13 @@ nav ul {
   display: flex;
   justify-content: space-evenly;
   list-style: none;
+  padding: 0;
+}
+
+nav {
+  position: sticky;
+  top: 0px;
+  background-color: grey;
 }
 
 a {

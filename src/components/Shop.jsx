@@ -44,17 +44,13 @@ function Shop() {
     const cartIndex = cart.findIndex((e) => {
       return e.id == uid;
     });
-    console.log(cartIndex);
     let cartCopy = [...cart];
-    console.log(cartCopy);
-    console.log(itemCopy);
     if (cartIndex >= 0) {
       cartCopy.splice(cartIndex, 1);
       setCart([...cartCopy, itemCopy]);
     } else {
       setCart([...cartCopy, itemCopy]);
     }
-    console.log(cart);
   }
 
   function handleIncrement(e) {

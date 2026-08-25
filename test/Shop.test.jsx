@@ -5,6 +5,7 @@ import { render, screen } from "@testing-library/react";
 import { createMemoryRouter } from "react-router";
 import routes from "../src/routes";
 import { RouterProvider } from "react-router/dom";
+import userEvent from "@testing-library/user-event";
 
 describe("Shop component", () => {
   window.fetch = vi.fn(() => {
@@ -20,5 +21,77 @@ describe("Shop component", () => {
     const router = createMemoryRouter(routes, { initialEntries: ["/shop"] });
     render(<RouterProvider router={router} />);
     expect(screen.findByRole("heading", { name: /Shop/i }));
+  });
+  it("renders cards for shop items", async () => {
+    const router = createMemoryRouter(routes, { initialEntries: ["/shop"] });
+    render(<RouterProvider router={router} />);
+    expect(
+      screen.findByText(
+        "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+      ),
+    );
+  });
+  it("increment btn increases count", async () => {
+    const user = userEvent.setup();
+    const router = createMemoryRouter(routes, { initialEntries: ["/shop"] });
+    const { container } = render(<RouterProvider router={router} />);
+
+    await screen.findByRole("heading", { name: /Shop/i });
+
+    const incrementBtn = container.querySelector(
+      "[data-id='1'] button.increment",
+    );
+
+    await user.click(incrementBtn);
+    const count = container.querySelector("[data-id='1'] input#itemCount1");
+
+    expect(count.value).toEqual("2");
+  });
+  it("decrement btn decreases count", async () => {
+    const user = userEvent.setup();
+    const router = createMemoryRouter(routes, { initialEntries: ["/shop"] });
+    const { container } = render(<RouterProvider router={router} />);
+
+    await screen.findByRole("heading", { name: /Shop/i });
+
+    const incrementBtn = container.querySelector(
+      "[data-id='1'] button.increment",
+    );
+    const decrementBtn = container.querySelector(
+      "[data-id='1'] button.decrement",
+    );
+    await user.click(incrementBtn); //2
+    await user.click(incrementBtn); //3
+    await user.click(incrementBtn); //4
+    await user.click(decrementBtn); //3
+    const count = container.querySelector("[data-id='1'] input#itemCount1");
+
+    expect(count.value).toEqual("3");
+  });
+  it("add to cart btn adds item to cart", async () => {
+    const user = userEvent.setup();
+    const router = createMemoryRouter(routes, { initialEntries: ["/shop"] });
+    const { container } = render(<RouterProvider router={router} />);
+
+    await screen.findByRole("heading", { name: /Shop/i });
+
+    const addToCartBtn = container.querySelector("[data-id='1'] > button");
+    await user.click(addToCartBtn);
+
+    expect(screen.getByRole("link", { name: "Cart 1" }));
+  });
+  it("shows error can only enter between 1 and 10", async () => {
+    const user = userEvent.setup();
+    const router = createMemoryRouter(routes, { initialEntries: ["/shop"] });
+    const { container } = render(<RouterProvider router={router} />);
+
+    await screen.findByRole("heading", { name: /Shop/i });
+
+    const countInput = container.querySelector(
+      "[data-id='1'] input#itemCount1",
+    );
+
+    await user.type(countInput, "0");
+    screen.findByText("can only enter a number between 1 and 10.");
   });
 });
