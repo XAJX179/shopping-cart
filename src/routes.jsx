@@ -15,15 +15,15 @@ const routes = [
         element: <Home />,
       },
       {
-        path: "/home",
+        path: "home",
         element: <Home />,
       },
       {
-        path: "/shop",
+        path: "shop",
         element: <Shop />,
       },
       {
-        path: "/cart",
+        path: "cart",
         element: <Cart />,
       },
     ],

@@ -8,4 +8,5 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: "./test/setup.js",
   },
+  base: "/shopping-cart/",
 });
