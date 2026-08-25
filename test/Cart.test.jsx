@@ -5,6 +5,7 @@ import { render, screen } from "@testing-library/react";
 import { createMemoryRouter } from "react-router";
 import routes from "../src/routes";
 import { RouterProvider } from "react-router/dom";
+import userEvent from "@testing-library/user-event";
 
 describe("Cart component", () => {
   window.fetch = vi.fn(() => {
@@ -20,5 +21,36 @@ describe("Cart component", () => {
     const router = createMemoryRouter(routes, { initialEntries: ["/cart"] });
     render(<RouterProvider router={router} />);
     expect(screen.getByRole("heading", { name: /Cart/i }));
+  });
+  it("shows cart items", async () => {
+    const user = userEvent.setup();
+    const router = createMemoryRouter(routes, { initialEntries: ["/shop"] });
+    const { container } = render(<RouterProvider router={router} />);
+
+    await screen.findByRole("heading", { name: /Shop/i });
+
+    const addToCartBtn = container.querySelector("[data-id='1'] > button");
+    await user.click(addToCartBtn);
+    await user.click(screen.getByRole("link", { name: "Cart 1" }));
+
+    expect(
+      screen.getByText("Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops"),
+    );
+  });
+  it("can remove items", async () => {
+    const user = userEvent.setup();
+    const router = createMemoryRouter(routes, { initialEntries: ["/shop"] });
+    const { container } = render(<RouterProvider router={router} />);
+
+    await screen.findByRole("heading", { name: /Shop/i });
+
+    const addToCartBtn = container.querySelector("[data-id='1'] > button");
+    await user.click(addToCartBtn);
+    await user.click(screen.getByRole("link", { name: "Cart 1" }));
+
+    // on /cart page now
+    const removeBtn = container.querySelector("[data-id='1'] > button");
+    await user.click(removeBtn);
+    expect(screen.getByRole("link", { name: "Cart 0" }));
   });
 });
