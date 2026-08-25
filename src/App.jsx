@@ -2,21 +2,12 @@ import { Outlet } from "react-router";
 import NavigationBar from "./components/NavigationBar";
 import "./App.css";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router";
 
 function App() {
   const [shop, setShop] = useData("https://fakestoreapi.com/products");
   const [cart, setCart] = useState([]);
   let cartItemsCount = cart.length;
-  let outlet;
-  let path = useLocation().pathname;
-  if (path == "/home" || path == "/") {
-    outlet = <Outlet />;
-  } else if (path == "/shop" && shop && setShop) {
-    outlet = <Outlet context={[shop, setShop, cart, setCart]} />;
-  } else if (path == "/cart") {
-    outlet = <Outlet context={[cart, setCart]} />;
-  }
+  let outlet = <Outlet context={{ shop, setShop, cart, setCart }} />;
   return (
     <>
       <NavigationBar cartItemsCount={cartItemsCount} />

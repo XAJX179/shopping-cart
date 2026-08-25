@@ -3,8 +3,11 @@ import ShopCard from "./ShopCard";
 import { useState } from "react";
 
 function Shop() {
-  const [shop, setShop, cart, setCart] = useOutletContext();
+  const { shop, setShop, cart, setCart } = useOutletContext();
   const [errorsId, setErrorsId] = useState([]);
+  if (!shop) {
+    return <p>Loading shop...</p>;
+  }
   return (
     <>
       <header>

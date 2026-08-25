@@ -3,8 +3,11 @@ import ShopCard from "./ShopCard";
 import { useState } from "react";
 
 function Cart() {
-  const [cart, setCart] = useOutletContext();
+  const { cart, setCart } = useOutletContext();
   const [errorsId, setErrorsId] = useState([]);
+  if (!cart) {
+    return <p>Loading cart...</p>;
+  }
   return (
     <>
       <header>
