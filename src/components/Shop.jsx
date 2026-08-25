@@ -15,15 +15,15 @@ function Shop() {
         {shop.map((e) => {
           return (
             <ShopCard
-              key={e.uid}
-              uid={e.uid}
+              key={e.id}
+              uid={e.id}
               title={e.title}
               price={e.price}
               count={e.numOfItems}
               onChange={handleNumChange}
               handleIncrement={handleIncrement}
               handleDecrement={handleDecrement}
-              isErrored={errorsId.includes(String(e.uid))}
+              isErrored={errorsId.includes(String(e.id))}
               onAddCart={onAddCart}
             />
           );
@@ -35,13 +35,13 @@ function Shop() {
   function onAddCart(e) {
     const uid = e.target.parentElement.dataset.id;
     const shopIndex = shop.findIndex((e) => {
-      return e.uid == uid;
+      return e.id == uid;
     });
     let item = shop[shopIndex];
     let itemCopy = { ...item };
 
     const cartIndex = cart.findIndex((e) => {
-      return e.uid == uid;
+      return e.id == uid;
     });
     console.log(cartIndex);
     let cartCopy = [...cart];
@@ -59,7 +59,7 @@ function Shop() {
   function handleIncrement(e) {
     const uid = e.target.parentElement.parentElement.dataset.id;
     const index = shop.findIndex((e) => {
-      return e.uid == uid;
+      return e.id == uid;
     });
     let item = shop[index];
     let numOfItems = item.numOfItems;
@@ -74,7 +74,7 @@ function Shop() {
   function handleDecrement(e) {
     const uid = e.target.parentElement.parentElement.dataset.id;
     const index = shop.findIndex((e) => {
-      return e.uid == uid;
+      return e.id == uid;
     });
     let item = shop[index];
     let numOfItems = item.numOfItems;
@@ -97,7 +97,7 @@ function Shop() {
       }
     } else {
       const index = shop.findIndex((e) => {
-        return e.uid == uid;
+        return e.id == uid;
       });
 
       const shopCopy = [...shop];

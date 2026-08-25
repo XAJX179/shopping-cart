@@ -15,8 +15,8 @@ function Cart() {
         {cart.map((e) => {
           return (
             <ShopCard
-              key={e.uid}
-              uid={e.uid}
+              key={e.id}
+              uid={e.id}
               title={e.title}
               price={e.price}
               count={e.numOfItems}
@@ -24,7 +24,7 @@ function Cart() {
               handleIncrement={handleIncrement}
               handleDecrement={handleDecrement}
               handleDelete={handleDelete}
-              isErrored={errorsId.includes(String(e.uid))}
+              isErrored={errorsId.includes(String(e.id))}
               cartPage={true}
             />
           );
@@ -36,7 +36,7 @@ function Cart() {
   function handleDelete(e) {
     const uid = e.target.parentElement.dataset.id;
     const index = cart.findIndex((e) => {
-      return e.uid == uid;
+      return e.id == uid;
     });
     if (index >= 0) {
       const cartCopy = cart.toSpliced(index, 1);
@@ -47,7 +47,7 @@ function Cart() {
   function handleIncrement(e) {
     const uid = e.target.parentElement.parentElement.dataset.id;
     const index = cart.findIndex((e) => {
-      return e.uid == uid;
+      return e.id == uid;
     });
     let item = cart[index];
     let numOfItems = item.numOfItems;
@@ -62,7 +62,7 @@ function Cart() {
   function handleDecrement(e) {
     const uid = e.target.parentElement.parentElement.dataset.id;
     const index = cart.findIndex((e) => {
-      return e.uid == uid;
+      return e.id == uid;
     });
     let item = cart[index];
     let numOfItems = item.numOfItems;
@@ -85,7 +85,7 @@ function Cart() {
       }
     } else {
       const index = cart.findIndex((e) => {
-        return e.uid == uid;
+        return e.id == uid;
       });
 
       const cartCopy = [...cart];
