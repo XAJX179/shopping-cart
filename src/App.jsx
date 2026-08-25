@@ -31,7 +31,9 @@ function useData(url) {
     fetch(url)
       .then((response) => response.json())
       .then((json) => {
-        json.map((e) => (e.numOfItems = 1));
+        if (url == "https://fakestoreapi.com/products") {
+          json.map((e) => (e.numOfItems = 1));
+        }
         if (!ignore) {
           setData(json);
         }

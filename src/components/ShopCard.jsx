@@ -3,6 +3,7 @@ function ShopCard({
   title,
   price,
   count,
+  imageUrl,
   onChange,
   handleIncrement,
   handleDecrement,
@@ -49,8 +50,8 @@ function ShopCard({
   }
   return (
     <div className="card" data-id={uid}>
-      <img alt="" />
-      <p>name: {title}</p>
+      <img src={imageUrl} alt="" />
+      <p>{title}</p>
       <p>price: {price}$</p>
       <label htmlFor={"itemCount" + uid}></label>
       <div className="count">

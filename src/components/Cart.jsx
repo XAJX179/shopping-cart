@@ -20,6 +20,7 @@ function Cart() {
               title={e.title}
               price={e.price}
               count={e.numOfItems}
+              imageUrl={e.image}
               onChange={handleNumChange}
               handleIncrement={handleIncrement}
               handleDecrement={handleDecrement}
