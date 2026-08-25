@@ -5,6 +5,7 @@ import { render, screen } from "@testing-library/react";
 import { createMemoryRouter } from "react-router";
 import routes from "../src/routes";
 import { RouterProvider } from "react-router/dom";
+import userEvent from "@testing-library/user-event";
 
 describe("App component", () => {
   window.fetch = vi.fn(() => {
@@ -20,5 +21,27 @@ describe("App component", () => {
     const router = createMemoryRouter(routes);
     render(<RouterProvider router={router} />);
     expect(screen.getByRole("heading", { name: /Homepage/i }));
+  });
+
+  it("clicking on start shopping btn take user to /shop", async () => {
+    const router = createMemoryRouter(routes);
+    render(<RouterProvider router={router} />);
+
+    const user = userEvent.setup();
+
+    await user.click(screen.getByRole("link", { name: /Start/i }));
+
+    expect(await screen.findByRole("heading", { name: /Shop/i }));
+  });
+
+  it("clicking on cart nav link takes user to /cart", async () => {
+    const router = createMemoryRouter(routes);
+    render(<RouterProvider router={router} />);
+
+    const user = userEvent.setup();
+
+    await user.click(screen.getByRole("link", { name: /Cart/i }));
+
+    expect(await screen.findByRole("heading", { name: /Cart/i }));
   });
 });
