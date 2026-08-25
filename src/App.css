@@ -204,3 +204,16 @@ img {
 .card input {
   max-width: 30px;
 }
+
+nav ul {
+  display: flex;
+  justify-content: space-evenly;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  background: black;
+  color: white;
+  padding: 10px;
+}
